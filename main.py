@@ -8,7 +8,6 @@ from collections import defaultdict
 import torch
 import torch.nn as nn
 import numpy as np
-import torch.nn.functional as F
 from ruamel.yaml import YAML
 from process import load_data
 from model import EMHGNN
@@ -18,6 +17,7 @@ from utils import (set_random_seed, get_n_params, EarlyStopping, evaluate, get_f
 import warnings
 warnings.simplefilter("ignore")
 times_list = []
+
 
 def main(args):
     set_random_seed(args.seed)
@@ -52,10 +52,6 @@ def main(args):
 
     start = time.time()
     paths = get_full_paths(list(adjs.keys()), tgt_type, args.num_hops)
-
-    # hom_paths = [path for path in paths if path[0] == path[-1]]
-    # het_paths = [path for path in paths if path[0] != path[-1]]
-    # paths = het_paths
 
     hop_adjs = {}
     for path in paths:
@@ -100,7 +96,6 @@ def main(args):
 
     start = time.time()
     paths = list(hop_adjs.keys())
-    # paths = {k: v for k, v in hop_adjs.items() if len(k) == 6}
     if args.dataset not in ['AMiner']:
         feats = {tgt_type: feats_dict[tgt_type]}
         for path in paths:
@@ -225,15 +220,13 @@ def main(args):
         if early_stopping.early_stop:
             print('Early stopping!')
             break
-    # allocated_memory = torch.cuda.memory_allocated() / (1024 ** 2)
-    # print(f'Allocated Memory: {allocated_memory:.2f} MB')
 
     print(f'average train times: {sum(train_times) / len(train_times)}')
     times_list.append(sum(train_times) / len(train_times))
     all_pred = torch.empty((num_nodes, num_classes))
     all_pred[labeled_idx] = early_stopping.best_pred
 
-    # 查看 weights
+    # weights
     # if args.attention_module:
     #     model.load_state_dict(torch.load(f'output/checkpoint_{args.dataset}.pt'))
     #     feats = {k: x.to(device) for k, x in feats.items()}
