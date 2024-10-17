@@ -1,2 +1,2 @@
 # Models
-The best models from the training process will be stored here.
+The best model from the training process will be stored here.
