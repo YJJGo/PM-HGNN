@@ -67,7 +67,7 @@ IMDB:
 AMiner:
   lr: 0.001
   wd: 0
-  attn_lr: 0.001
+  attn_lr: 0
   attn_wd: 0
   epoch: 200
   embed_dim: 512
@@ -83,6 +83,6 @@ AMiner:
   residual: True
   redundancy_module: True
   sim_module: True
-  attention_module: True
+  attention_module: False
   batch_size: 128
   patience: 30
