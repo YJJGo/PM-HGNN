@@ -216,7 +216,7 @@ def main(args):
                       f'test_acc: ({test_acc[0] * 100:.2f}, {test_acc[1] * 100:.2f})')
 
         # early stopping
-        early_stopping(epoch, val_loss, val_acc, raw_pred, model, judge_loss=True, save_model=False)
+        early_stopping(epoch, val_loss, val_acc, raw_pred, model, judge_loss=True, save_model=True)
         if early_stopping.early_stop:
             print('Early stopping!')
             break
