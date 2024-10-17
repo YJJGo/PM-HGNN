@@ -12,7 +12,7 @@ Please extract the datasets (`DBLP.zip`, `ACM.zip`, `IMDB.zip`, `AMiner.zip`) un
 
 ## Training
 To reproduce the results of EM-HGNN on four widely used datasets, please run following commands. 
-All dataset-specific hyperparameters are conveniently stored in the args.yaml file.
+All dataset-specific hyperparameters are conveniently stored in the **args.yaml** file.
 
 for **DBLP:**
 ```
