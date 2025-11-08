@@ -1,4 +1,4 @@
-# EM-HGNN
+# PM-HGNN
 ## Requirements
 All experiments are conducted on Nvidia RTX4060 GPU (8GB).
 
